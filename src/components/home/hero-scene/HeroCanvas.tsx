@@ -59,7 +59,7 @@ export default function HeroCanvas({ onReady, onError }: HeroCanvasProps) {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.domElement.setAttribute('aria-hidden', 'true');
     renderer.domElement.style.cssText = 'display:block;width:100%;height:100%';
     host.appendChild(renderer.domElement);
@@ -121,13 +121,15 @@ export default function HeroCanvas({ onReady, onError }: HeroCanvasProps) {
     });
     ro.observe(host);
 
-    const clock = new THREE.Clock();
+    // Timer accumulates only time spent running, so the scene resumes where it paused.
+    const timer = new THREE.Timer();
     let frame = 0;
     let running = false;
     let readyFired = false;
 
-    const loop = () => {
-      renderAt(clock.getElapsedTime());
+    const loop = (timestamp: number) => {
+      timer.update(timestamp);
+      renderAt(timer.getElapsed());
       if (!readyFired) {
         readyFired = true;
         callbacks.current.onReady?.();
@@ -137,13 +139,12 @@ export default function HeroCanvas({ onReady, onError }: HeroCanvasProps) {
     const start = () => {
       if (running || reducedMotion) return;
       running = true;
-      clock.start();
+      timer.reset();
       frame = requestAnimationFrame(loop);
     };
     const stop = () => {
       if (!running) return;
       running = false;
-      clock.stop();
       cancelAnimationFrame(frame);
     };
 
