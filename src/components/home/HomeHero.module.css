@@ -1,0 +1,102 @@
+.hero {
+  position: relative;
+  min-height: max(640px, 100svh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: var(--navy-900);
+  isolation: isolate;
+}
+
+.fallback {
+  object-fit: cover;
+  filter: saturate(0.7) brightness(0.55) hue-rotate(-8deg);
+  transform: scale(1.05);
+  transition: opacity 1.2s var(--ease);
+  z-index: -3;
+}
+
+.fallbackHidden {
+  opacity: 0;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease);
+}
+
+.sceneReady {
+  opacity: 1;
+}
+
+/* Keeps the headline readable over the moving scene. */
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(20, 29, 41, 0.92) 0%, rgba(20, 29, 41, 0.7) 34%, rgba(20, 29, 41, 0.12) 68%, transparent 100%),
+    linear-gradient(180deg, rgba(20, 29, 41, 0.55) 0%, transparent 22%, transparent 70%, rgba(20, 29, 41, 0.85) 100%);
+}
+
+.content {
+  padding-top: calc(var(--header-h) + 3rem);
+  padding-bottom: 6rem;
+}
+
+.title {
+  max-width: 22ch;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: #fff;
+  margin-bottom: 2rem;
+  animation: rise 0.9s 0.08s var(--ease) both;
+}
+
+.content :global(.btn-group) {
+  animation: rise 0.9s 0.24s var(--ease) both;
+}
+
+.scrollCue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
+  translate: -50% 0;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .shade {
+    background: linear-gradient(180deg, rgba(20, 29, 41, 0.75) 0%, rgba(20, 29, 41, 0.55) 45%, rgba(20, 29, 41, 0.9) 100%);
+  }
+
+  .scrollCue {
+    display: none;
+  }
+}

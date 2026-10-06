@@ -1,0 +1,73 @@
+/* ---------- Welcome ---------- */
+
+.about {
+  scroll-margin-top: var(--header-h);
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.welcome {
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.body {
+  color: var(--ink-soft);
+}
+
+.aboutImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 55% 50%;
+  border-radius: var(--radius);
+}
+
+/* ---------- Location ---------- */
+
+.location {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.locationImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+.locationImages img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.locationImages img:first-child {
+  grid-row: span 2;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 899.98px) {
+  .aboutGrid,
+  .location {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutImg {
+    aspect-ratio: 16 / 9;
+  }
+}

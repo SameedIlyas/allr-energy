@@ -1,49 +1,322 @@
+/* ALLR ENERGY: design tokens, base typography, layout and shared UI primitives. */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Palette mirrors allr-energy.com: brand blue, slate navy, pale blue, plum logo. */
+  --navy-950: #141d29;
+  --navy-900: #1b2735;
+  --navy-800: #2b3e55;
+  --navy-700: #3b5270;
+  --blue-700: #0947b0;
+  --blue-600: #0b57d6;
+  --blue-500: #1f63d6;
+  --blue-400: #4a7fd4;
+  --sky-300: #cde1f5;
+  --sky-100: #e6f0fa;
+  --brand-plum: #2c2733;
+
+  --ink: #1e2833;
+  --ink-soft: #2b3e55;
+  --muted: #5b6b7d;
+  --line: #dce5ef;
+  --bg: #ffffff;
+  --bg-soft: #f3f7fb;
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 2px rgba(30, 40, 51, 0.06);
+  --shadow: 0 6px 18px -10px rgba(30, 40, 51, 0.2), 0 1px 3px rgba(30, 40, 51, 0.05);
+  --shadow-lg: 0 18px 40px -20px rgba(20, 29, 41, 0.35);
+
+  --container: 1200px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --header-h: 76px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --font-display: var(--font-sans), 'Segoe UI', Calibri, system-ui, sans-serif;
+  --font-body: var(--font-sans), 'Segoe UI', Calibri, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  margin: 0 0 0.6em;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1em;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: var(--blue-600);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
-@media (prefers-color-scheme: dark) {
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  margin: 0;
+}
+
+::selection {
+  background: rgba(11, 87, 214, 0.22);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue-500);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.section-soft {
+  background: var(--bg-soft);
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.section-head.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+}
+
+.lead {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--ink-soft);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  --btn-bg: var(--blue-600);
+  --btn-fg: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.btn svg {
+  transition: transform 0.25s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btn-primary {
+  background: var(--blue-600);
+}
+
+.btn-primary:hover {
+  background: var(--blue-700);
+}
+
+.btn-ghost {
+  --btn-fg: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline {
+  --btn-fg: var(--ink);
+  background: #fff;
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover {
+  border-color: var(--navy-800);
+}
+
+.btn-sm {
+  min-height: 40px;
+  padding: 0.55rem 1.05rem;
+  font-size: 0.88rem;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+/* ---------- Shared bits ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.85rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b57d6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>")
+      center / 0.72rem no-repeat,
+    var(--sky-100);
+}
+
+/* ---------- Scroll reveal (progressive enhancement, no JS) ---------- */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    animation: none !important;
   }
 }

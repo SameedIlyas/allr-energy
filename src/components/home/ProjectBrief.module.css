@@ -1,0 +1,143 @@
+.section {
+  scroll-margin-top: var(--header-h);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: start;
+}
+
+/* ---------- Intro column ---------- */
+
+.direct {
+  margin: 1.5rem 0 0;
+  color: var(--ink-soft);
+}
+
+/* ---------- Form card ---------- */
+
+.card {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.form > :global(.btn) {
+  justify-self: start;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field > span {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.field abbr {
+  color: var(--blue-600);
+  text-decoration: none;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #c9d6e4;
+  border-radius: var(--radius-sm);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field select {
+  appearance: none;
+  padding-right: 2.4rem;
+  background: #fff
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b3e55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>")
+    right 0.8rem center / 1rem no-repeat;
+  cursor: pointer;
+}
+
+.field select:invalid {
+  color: var(--muted);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #8a97a6;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue-600);
+  box-shadow: 0 0 0 3px rgba(11, 87, 214, 0.15);
+}
+
+.error {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  color: #9b1c1c;
+  background: #fdecec;
+  border: 1px solid #f6caca;
+}
+
+.success {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  color: var(--ink-soft);
+}
+
+.success svg {
+  color: var(--blue-600);
+}
+
+.success h3 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 899.98px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 559.98px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

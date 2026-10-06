@@ -1,0 +1,23 @@
+.hero {
+  color: #fff;
+  background: var(--navy-800);
+}
+
+.content {
+  padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.title {
+  max-width: 28ch;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  max-width: 70ch;
+  font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+  color: rgba(230, 240, 250, 0.85);
+  margin: 0;
+}

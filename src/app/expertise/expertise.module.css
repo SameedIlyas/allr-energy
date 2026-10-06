@@ -1,0 +1,25 @@
+.content {
+  max-width: calc(860px + var(--gutter) * 2);
+}
+
+.heading {
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  margin-bottom: 1.25rem;
+}
+
+.list {
+  margin: 0 0 2rem;
+  padding-left: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.list li {
+  margin-bottom: 0.4rem;
+}
+
+.external {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}

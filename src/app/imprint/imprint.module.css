@@ -1,0 +1,55 @@
+.imprintSection {
+  max-width: calc(820px + var(--gutter) * 2);
+  color: var(--ink-soft);
+}
+
+.imprintSection h2,
+.imprintSection h3,
+.imprintSection h4 {
+  color: var(--ink);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.imprintSection h2 {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  margin-top: 3rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.imprintSection h2:first-of-type {
+  margin-top: 0;
+}
+
+.imprintSection h3 {
+  font-size: 1.3rem;
+  margin-top: 2.25rem;
+}
+
+.imprintSection h4 {
+  font-size: 1.05rem;
+  margin-top: 1.6rem;
+}
+
+.imprintSection ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.imprintSection li::marker {
+  color: var(--blue-500);
+}
+
+.imprintSection strong {
+  color: var(--ink);
+}
+
+/* Imprint address block */
+.imprintSection h2:first-of-type + p {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}

@@ -1,0 +1,65 @@
+import type { Metadata } from 'next';
+import PageHero from '@/components/PageHero';
+import styles from './expertise.module.css';
+
+export const metadata: Metadata = {
+  title: 'Expertise',
+  description: 'Permanently held in-house expertise: decades of management+ level experience & academics.',
+};
+
+const EEE_URL =
+  'https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis';
+
+// Entries as listed on www.allr-energy.com/expertise.php; exact duplicates in the source are merged.
+const ITEMS: readonly { label: string; href?: string }[] = [
+  { label: 'C-level Investment Grade Renewable Energy Projects Permitting => EPC, Small Lot & Serial Manufacturing, Mass Production' },
+  { label: 'C-level International Business Establishment, Market Entry Planning and Execution, Recruiting, ROE, NPV, Investment, Finance' },
+  { label: 'C-level Manufacturing Plant EPC, Incentives Optimization, Development Contract Structuring' },
+  { label: 'C-level Consulting' },
+  { label: 'C-level M&A' },
+  { label: 'C-level P&L' },
+  { label: 'Ops-level Project Management' },
+  { label: 'Ops-level Industrial Engineering' },
+  { label: 'Ops-level Defense Planning' },
+  { label: 'Ops-level Publication' },
+  { label: 'MSc. Management of Technology/Sloan Fellow, MIT' },
+  { label: 'MSc. Mechanical Engineering & Business Administration (Dipl. Wirt.-Ing.), University of Paderborn, Germany' },
+  { label: 'MBA, UMass Lowell' },
+  { label: 'Honors Degree in English' },
+  { label: 'European Adhesive Bonding Engineer (Klebfachingenieur), IFAM Bremen' },
+  { label: 'Certified Energy Efficiency Expert (Energie Effizienz Experte), DENA' },
+  { label: 'Energy Efficiency Experts (EEE) Residential Buildings', href: EEE_URL },
+  { label: 'Certified Energy Efficiency Expert (Energie Effizienz Experte) incl. non-residential buildings, DENA' },
+];
+
+export default function ExpertisePage() {
+  return (
+    <>
+      <PageHero title="Expertise" />
+
+      <main className="section">
+        <div className={`container ${styles.content}`}>
+          <h2 className={styles.heading}>
+            Permanently held In-house expertise (decades of management+ level experience &amp; academics)
+          </h2>
+          <ul className={styles.list}>
+            {ITEMS.map(({ label, href }) => (
+              <li key={label}>
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer">
+                    {label}
+                  </a>
+                ) : (
+                  label
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <p className={styles.external}>External Expertise readily accessible as and when needed.</p>
+          <p className={styles.external}>Virtually unlimited in scale and scope!</p>
+        </div>
+      </main>
+    </>
+  );
+}

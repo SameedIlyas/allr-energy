@@ -1,69 +1,84 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import HomeHero from '@/components/home/HomeHero';
+import ProjectBrief from '@/components/home/ProjectBrief';
+import Testimonials from '@/components/home/Testimonials';
+import { LOCATION_IMAGES, LOCATION_STATEMENTS, TESTIMONIALS } from '@/content/quotes';
+import styles from './home.module.css';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <HomeHero />
+
+      <main>
+        {/* Welcome text, verbatim from allr-energy.com */}
+        <section id="about" className={`section ${styles.about}`}>
+          <div className={`container ${styles.aboutGrid}`}>
+            <div>
+              <p className={styles.welcome}>
+                Welcome to ALLR ENERGY, your reliable partner in expanding your business globally in today’s
+                ever-expanding sphere of energy efficiency.
+              </p>
+              <p className={styles.body}>
+                We aspire building sustainably profitable international business expansions for our clients, adhering
+                in particular to the absolute of reduced energy needs. We do so through decades of international C-level
+                executive decision making expertise, including full P&amp;L responsibility in world class corporations,
+                e.g. heavy equipment manufacturers, investment-grade renewable energy power plant developers, global
+                consumer goods serial manufacturing giants, make-to-order batch steel based manufacturers, OEM machinery
+                manufacturers and more.
+              </p>
+              <p className={styles.body}>
+                All this, by diligently employing an in-house top tier international educational foundation a.o. from
+                MIT and Harvard University, as well as renowned German universities like the IFAM in Bremen, or the
+                University of Paderborn, combined with external specialty expertise (as and when required).
+              </p>
+              <p className={styles.body}>
+                We are dedicated to upholding sustainable profitability in all our business undertakings
+                cradle-to-grave, and are well-versed in the scope of renewable energy investment-grade installation
+                projects. Also, we employ decades of expansion and green- &amp; brownfield manufacturing plant, built
+                and operations optimization experience.
+              </p>
+            </div>
+
             <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src="/assets/handshake.jpg"
+              alt="Business partners shaking hands"
+              width={2454}
+              height={1025}
+              sizes="(max-width: 900px) 100vw, 520px"
+              className={styles.aboutImg}
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="section section-soft">
+          <div className="container">
+            <Testimonials items={TESTIMONIALS} />
+          </div>
+        </section>
+
+        {/* Location */}
+        <section className="section">
+          <div className={`container ${styles.location}`}>
+            <div className={styles.locationImages}>
+              {LOCATION_IMAGES.map((img) => (
+                <Image key={img.src} src={img.src} alt={img.alt} width={img.width} height={img.height} quality={90} />
+              ))}
+            </div>
+            <div>
+              {LOCATION_STATEMENTS.map((s) => (
+                <p key={s} className={styles.body}>
+                  {s}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Describe your project */}
+        <ProjectBrief />
       </main>
-    </div>
+    </>
   );
 }
