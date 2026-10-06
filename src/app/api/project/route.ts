@@ -16,13 +16,12 @@ export async function POST(request: Request) {
     return Response.json({ success: false, error }, { status: 400 });
   }
 
-  const { name, company, email, area, region, timeline, description } = parsed.data;
+  const { name, company, email, area, timeline, description } = parsed.data;
   const text = [
     `Name: ${name}`,
     `Company: ${company || '(not given)'}`,
     `Email: ${email}`,
-    `Project area: ${labelFor(PROJECT_AREAS, area)}`,
-    `Target region: ${region || '(not given)'}`,
+    `Industry: ${labelFor(PROJECT_AREAS, area)}`,
     `Timeline: ${labelFor(PROJECT_TIMELINES, timeline)}`,
     '',
     description,
@@ -31,7 +30,7 @@ export async function POST(request: Request) {
   return deliver(
     {
       replyTo: email,
-      subject: `New project brief from allr-energy.com: ${company || name}`,
+      subject: `New AI project brief from allr-energy.com: ${company || name}`,
       text,
     },
     'Project brief',

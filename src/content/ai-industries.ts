@@ -1,7 +1,7 @@
-export type IndustryIcon = 'construction' | 'manufacturing' | 'engineering' | 'logistics' | 'legal' | 'real-estate';
+export type IndustryId = 'construction' | 'manufacturing' | 'engineering' | 'logistics' | 'legal' | 'real-estate';
 
 export interface AiIndustry {
-  id: IndustryIcon;
+  id: IndustryId;
   title: string;
   tagline: string;
   /** Card photo; 4:5-ish crop works best. */

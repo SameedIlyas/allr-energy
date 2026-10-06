@@ -16,7 +16,7 @@ type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind
 type FieldKey = keyof typeof EMPTY;
 type FieldElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-const EMPTY = { name: '', company: '', email: '', area: '', region: '', timeline: '', description: '' };
+const EMPTY = { name: '', company: '', email: '', area: '', timeline: '', description: '' };
 const GENERIC_ERROR = `Your project brief could not be sent. Please email us at ${FALLBACK_EMAIL}.`;
 
 function errorFrom(body: unknown): string {
@@ -54,11 +54,17 @@ export default function ProjectBrief() {
   }
 
   return (
-    <section id="project" className={`section ${styles.section}`}>
+    <section id="project" className={`section section-soft ${styles.section}`}>
       <div className={`container ${styles.grid}`}>
         <div>
           <h2 className="section-title">Describe your project</h2>
-          <p className="lead">Please briefly describe the task we may support you with or contact the E-Mail provided below.</p>
+          <p className="lead">
+            In addition to our standardized services, we develop customized AI solutions tailored to your
+            processes, systems and industry requirements.
+          </p>
+          <p className={styles.direct}>
+            Please briefly describe your project and we will get back to you, or contact us at the E-Mail below.
+          </p>
           <p className={styles.direct}>
             E-Mail: <a href={`mailto:${FALLBACK_EMAIL}`}>{FALLBACK_EMAIL}</a>
           </p>
@@ -119,35 +125,6 @@ export default function ProjectBrief() {
                   />
                 </label>
                 <label className={styles.field}>
-                  <span>Target country / region</span>
-                  <input
-                    type="text"
-                    name="region"
-                    placeholder="e.g. USA, Southeast Asia"
-                    maxLength={SHORT_FIELD_MAX_LENGTH}
-                    value={fields.region}
-                    onChange={update('region')}
-                  />
-                </label>
-              </div>
-
-              <div className={styles.row}>
-                <label className={styles.field}>
-                  <span>
-                    Project area <abbr title="required">*</abbr>
-                  </span>
-                  <select name="area" required value={fields.area} onChange={update('area')}>
-                    <option value="" disabled>
-                      Select an area…
-                    </option>
-                    {PROJECT_AREAS.map((a) => (
-                      <option key={a.value} value={a.value}>
-                        {a.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className={styles.field}>
                   <span>
                     Timeline <abbr title="required">*</abbr>
                   </span>
@@ -166,6 +143,22 @@ export default function ProjectBrief() {
 
               <label className={styles.field}>
                 <span>
+                  Industry <abbr title="required">*</abbr>
+                </span>
+                <select name="area" required value={fields.area} onChange={update('area')}>
+                  <option value="" disabled>
+                    Select an industry…
+                  </option>
+                  {PROJECT_AREAS.map((a) => (
+                    <option key={a.value} value={a.value}>
+                      {a.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className={styles.field}>
+                <span>
                   Description <abbr title="required">*</abbr>
                 </span>
                 <textarea
@@ -174,7 +167,7 @@ export default function ProjectBrief() {
                   required
                   minLength={DESCRIPTION_MIN_LENGTH}
                   maxLength={MESSAGE_MAX_LENGTH}
-                  placeholder="Please briefly describe the task we may support you with…"
+                  placeholder="Current processes, systems in use, what you would like to automate…"
                   value={fields.description}
                   onChange={update('description')}
                 />

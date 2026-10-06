@@ -104,6 +104,7 @@ export const SERVICES: readonly Service[] = [
       'Own or proximity to low cost renewable energy sources',
     ],
     note: 'Sustainably low energy consumption w/o business limitations.',
-    image: { src: '/assets/services/7.jpg', alt: '3D layout depicting energy efficient operations', width: 500, height: 150 },
+    // Framed from the full-resolution campus render (logo-top.jpg) to match the other service photos.
+    image: { src: '/assets/services/7-framed.jpg', alt: '3D layout depicting energy efficient operations', width: 1210, height: 1024 },
   },
 ];

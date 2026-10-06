@@ -64,6 +64,18 @@ export default function Testimonials({ items }: TestimonialsProps) {
       onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setFocused(false)}
       onKeyDown={onKeyDown}
     >
+      <div className={styles.buttons}>
+        <button type="button" className={styles.iconBtn} onClick={() => setPlaying((p) => !p)} aria-label={playing ? 'Pause autoplay' : 'Start autoplay'}>
+          {playing ? <Pause size={16} /> : <Play size={16} />}
+        </button>
+        <button type="button" className={styles.iconBtn} onClick={() => go(index - 1)} aria-label="Previous slide">
+          <ChevronLeft size={18} />
+        </button>
+        <button type="button" className={styles.iconBtn} onClick={() => go(index + 1)} aria-label="Next slide">
+          <ChevronRight size={18} />
+        </button>
+      </div>
+
       <div className={styles.viewport} onPointerDown={onPointerDown} onPointerUp={onPointerUp}>
         <div className={styles.track} style={{ transform: `translateX(-${index * 100}%)` }} aria-live={autoplay ? 'off' : 'polite'}>
           {items.map((item, i) => (
@@ -103,32 +115,19 @@ export default function Testimonials({ items }: TestimonialsProps) {
         </div>
       </div>
 
-      <div className={styles.controls}>
-        <div className={styles.dots}>
-          {items.map((item, i) => (
-            <button
-              key={`dot-${i}`}
-              type="button"
-              className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
-              aria-label={`Show slide ${i + 1}: ${item.name}`}
-              aria-current={i === index}
-              onClick={() => go(i)}
-            >
-              {i === index && autoplay && <span key={index} className={styles.progress} style={{ animationDuration: `${AUTOPLAY_MS}ms` }} />}
-            </button>
-          ))}
-        </div>
-        <div className={styles.buttons}>
-          <button type="button" className={styles.iconBtn} onClick={() => setPlaying((p) => !p)} aria-label={playing ? 'Pause autoplay' : 'Start autoplay'}>
-            {playing ? <Pause size={16} /> : <Play size={16} />}
+      <div className={styles.dots}>
+        {items.map((item, i) => (
+          <button
+            key={`dot-${i}`}
+            type="button"
+            className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
+            aria-label={`Show slide ${i + 1}: ${item.name}`}
+            aria-current={i === index}
+            onClick={() => go(i)}
+          >
+            {i === index && autoplay && <span key={index} className={styles.progress} style={{ animationDuration: `${AUTOPLAY_MS}ms` }} />}
           </button>
-          <button type="button" className={styles.iconBtn} onClick={() => go(index - 1)} aria-label="Previous slide">
-            <ChevronLeft size={18} />
-          </button>
-          <button type="button" className={styles.iconBtn} onClick={() => go(index + 1)} aria-label="Next slide">
-            <ChevronRight size={18} />
-          </button>
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -1,14 +1,13 @@
 import { z } from 'zod';
-import { SERVICES } from '@/content/services';
+import { AI_INDUSTRIES } from '@/content/ai-industries';
 import { MESSAGE_MAX_LENGTH, NAME_MAX_LENGTH } from './contact-schema';
 
 export const DESCRIPTION_MIN_LENGTH = 20;
 export const SHORT_FIELD_MAX_LENGTH = 120;
 
 export const PROJECT_AREAS = [
-  ...SERVICES.map((s) => ({ value: s.id, label: s.title })),
-  { value: 'ai', label: 'AllR-AI services' },
-  { value: 'other', label: 'Other / not sure yet' },
+  ...AI_INDUSTRIES.map((i) => ({ value: i.id, label: i.title })),
+  { value: 'other', label: 'Other industry' },
 ] as const;
 
 export const PROJECT_TIMELINES = [
@@ -32,8 +31,7 @@ export const projectSchema = z.object({
     .max(NAME_MAX_LENGTH, 'Please shorten your name.'),
   company: optionalShort('Please shorten the company name.'),
   email: z.string().trim().email('Please enter a valid email address.').max(254),
-  area: z.enum(areaValues, { message: 'Please choose a project area.' }),
-  region: optionalShort('Please shorten the target region.'),
+  area: z.enum(areaValues, { message: 'Please choose an industry.' }),
   timeline: z.enum(timelineValues, { message: 'Please choose a timeline.' }),
   description: z
     .string()

@@ -52,11 +52,15 @@
   margin: 0;
 }
 
+/* Every service photo sits in the same frame so the column reads uniformly. */
 .figure img {
   width: 100%;
   height: auto;
+  aspect-ratio: 403 / 341;
+  object-fit: cover;
   border-radius: var(--radius-sm);
 }
+
 
 .figure figcaption {
   margin-top: 0.5rem;

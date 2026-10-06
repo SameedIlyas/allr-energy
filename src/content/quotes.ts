@@ -76,8 +76,13 @@ export const LOCATION_STATEMENTS = [
   'Your optimal location for producing products and doing business requires a multi-factorial decision process that we are very well positioned to support you in. We will make a highly profitable difference for you!',
 ] as const;
 
-export const LOCATION_IMAGES: readonly QuoteImage[] = [
-  { src: '/assets/img47.jpg', alt: 'Manufacturing site', width: 155, height: 233 },
-  { src: '/assets/img49.jpg', alt: 'Factory', width: 155, height: 98 },
-  { src: '/assets/img54.jpg', alt: 'Factory', width: 155, height: 98 },
+export interface CaptionedImage extends QuoteImage {
+  caption: string;
+}
+
+// The hall photo uses the larger copy from the services page; the other two only exist at thumbnail size.
+export const LOCATION_IMAGES: readonly CaptionedImage[] = [
+  { src: '/assets/img47.jpg', alt: 'Incentive package breakdown', caption: 'Incentive package', width: 155, height: 233 },
+  { src: '/assets/services/6.jpg', alt: 'Empty production hall', caption: 'Production hall', width: 457, height: 387 },
+  { src: '/assets/img54.jpg', alt: 'Aerial view of a 57 acre riverside site', caption: '57 acre riverside site', width: 155, height: 98 },
 ];

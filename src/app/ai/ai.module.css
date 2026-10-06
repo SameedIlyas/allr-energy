@@ -23,9 +23,11 @@
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  /* Subgrid keeps the header, tagline and list rows aligned across every card in a row. */
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: 1rem;
   padding: 1.25rem;
   border-radius: var(--radius-lg);
   background: #fff;
@@ -40,49 +42,40 @@
 
 .card:target {
   border-color: var(--blue-500);
-  box-shadow: 0 0 0 4px rgba(11, 87, 214, 0.15);
 }
 
-.cardTop {
+.cardHead {
   display: flex;
+  align-items: center;
   gap: 1rem;
-  align-items: flex-start;
 }
 
 .cardImg {
   flex: none;
-  width: 104px;
-  height: 116px;
+  width: 72px;
+  height: 72px;
   object-fit: cover;
   border-radius: var(--radius-sm);
 }
 
-.iconCircle {
-  display: inline-grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--blue-600);
-}
-
 .cardTitle {
-  font-size: 1.3rem;
-  color: var(--navy-700);
-  margin: 0.6rem 0 0.3rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--navy-800);
+  margin: 0;
 }
 
 .tagline {
-  font-size: 0.92rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  line-height: 1.45;
   color: var(--muted);
   margin: 0;
 }
 
 .list {
+  align-content: start;
   gap: 0.5rem;
-  padding-top: 1.1rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--line);
   font-size: 0.95rem;
 }
@@ -99,10 +92,3 @@
   }
 }
 
-@media (max-width: 400px) {
-
-  .cardImg {
-    width: 84px;
-    height: 96px;
-  }
-}

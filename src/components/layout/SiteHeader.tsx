@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { CTA_LABEL, NAV_ITEMS } from '@/content/site';
 import { useLanguage, type Lang } from '../LanguageProvider';
 import Logo from './Logo';
@@ -65,16 +65,18 @@ export default function SiteHeader() {
 
         <div className={styles.actions}>
           <div className={styles.lang} role="group" aria-label="Language">
-            {LANGS.map((code) => (
-              <button
-                key={code}
-                type="button"
-                className={lang === code ? styles.langActive : undefined}
-                aria-pressed={lang === code}
-                onClick={() => setLang(code)}
-              >
-                {code.toUpperCase()}
-              </button>
+            {LANGS.map((code, i) => (
+              <Fragment key={code}>
+                {i > 0 && <span aria-hidden="true">|</span>}
+                <button
+                  type="button"
+                  className={lang === code ? styles.langActive : undefined}
+                  aria-pressed={lang === code}
+                  onClick={() => setLang(code)}
+                >
+                  {code.toUpperCase()}
+                </button>
+              </Fragment>
             ))}
           </div>
           <Link href="/contact" className={`btn btn-primary btn-sm ${styles.cta}`}>
@@ -97,7 +99,11 @@ export default function SiteHeader() {
         <ul className="container">
           {NAV_ITEMS.map(({ href, label }) => (
             <li key={href}>
-              <Link href={href} className={isActive(pathname, href) ? styles.active : undefined}>
+              <Link
+                href={href}
+                className={isActive(pathname, href) ? styles.active : undefined}
+                aria-current={isActive(pathname, href) ? 'page' : undefined}
+              >
                 {label[lang]}
               </Link>
             </li>
