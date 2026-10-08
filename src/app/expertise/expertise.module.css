@@ -2,6 +2,16 @@
   max-width: calc(860px + var(--gutter) * 2);
 }
 
+.group {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.group .list {
+  margin-bottom: 1.5rem;
+}
+
 .heading {
   font-size: clamp(1.3rem, 2.2vw, 1.6rem);
   margin-bottom: 1.25rem;

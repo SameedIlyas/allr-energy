@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import styles from './expertise.module.css';
 
@@ -10,17 +12,19 @@ export const metadata: Metadata = {
 const EEE_URL =
   'https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis';
 
-// Devotrex's services section; its four delivery pillars are an accordion with no per-pillar anchor.
-const DEVOTREX_URL = 'https://devotrex.com/#services';
+// The delivery pillars section ("From a gap in your team to a shipped build.") on the AI page.
+const AI_DELIVERY_HREF = '/ai#delivery';
 
-// The AI & software engineering entries added with Devotrex lead the list, each linking to Devotrex.
-// The rest are as listed on www.allr-energy.com/expertise.php (exact duplicates merged), plus the NUST degrees.
+const AI_ITEMS: readonly string[] = [
+  'C-level AI & Software Engineering',
+  'Ops-level AI & Automation Implementation: RAG Knowledge Agents, Workflow Automation, Document Extraction & OCR, Computer Vision',
+  'Ops-level Full-Stack Web & SaaS Engineering: SaaS MVPs, Feature Development, API Development & Integration, Codebase Audits, QA & Test Automation',
+  'Ops-level Enterprise Systems & Legacy Integration: Legacy Database / CMS Integration, Data Migration & ETL',
+  'Ops-level Vertical Platform Builds: Legal Case Management, Real Estate Listings (IDX), LIMS / Compliance Tooling',
+];
+
+// As listed on www.allr-energy.com/expertise.php (exact duplicates merged), plus the NUST degrees.
 const ITEMS: readonly { label: string; href?: string }[] = [
-  { label: 'C-level AI & Software Engineering', href: DEVOTREX_URL },
-  { label: 'Ops-level AI & Automation Implementation: RAG Knowledge Agents, Workflow Automation, Document Extraction & OCR, Computer Vision', href: DEVOTREX_URL },
-  { label: 'Ops-level Full-Stack Web & SaaS Engineering: SaaS MVPs, Feature Development, API Development & Integration, Codebase Audits, QA & Test Automation', href: DEVOTREX_URL },
-  { label: 'Ops-level Enterprise Systems & Legacy Integration: Legacy Database / CMS Integration, Data Migration & ETL', href: DEVOTREX_URL },
-  { label: 'Ops-level Vertical Platform Builds: Legal Case Management, Real Estate Listings (IDX), LIMS / Compliance Tooling', href: DEVOTREX_URL },
   { label: 'C-level Investment Grade Renewable Energy Projects Permitting => EPC, Small Lot & Serial Manufacturing, Mass Production' },
   { label: 'C-level International Business Establishment, Market Entry Planning and Execution, Recruiting, ROE, NPV, Investment, Finance' },
   { label: 'C-level Manufacturing Plant EPC, Incentives Optimization, Development Contract Structuring' },
@@ -50,6 +54,20 @@ export default function ExpertisePage() {
 
       <main className="section">
         <div className={`container ${styles.content}`}>
+          <section className={styles.group} aria-labelledby="ai-expertise">
+            <h2 id="ai-expertise" className={styles.heading}>
+              AI &amp; Software Engineering
+            </h2>
+            <ul className={styles.list}>
+              {AI_ITEMS.map((label) => (
+                <li key={label}>{label}</li>
+              ))}
+            </ul>
+            <Link href={AI_DELIVERY_HREF} className="btn btn-primary">
+              See how we deliver <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </section>
+
           <h2 className={styles.heading}>
             Permanently held In-house expertise (decades of management+ level experience &amp; academics)
           </h2>
