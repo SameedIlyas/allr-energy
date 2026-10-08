@@ -36,6 +36,21 @@
   border-radius: var(--radius-sm);
 }
 
+/* Flex-grow is set to each photo's aspect ratio, so both share one height without stretching. */
+.pair {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin-bottom: 1rem;
+}
+
+.pair img {
+  flex-basis: 0;
+  min-width: 0;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
 .steps {
   display: flex;
   align-items: flex-start;

@@ -80,7 +80,7 @@ export default function Testimonials({ items }: TestimonialsProps) {
         <div className={styles.track} style={{ transform: `translateX(-${index * 100}%)` }} aria-live={autoplay ? 'off' : 'polite'}>
           {items.map((item, i) => (
             <figure
-              key={`${item.name}-${i}`}
+              key={`slide-${i}`}
               className={styles.slide}
               role="group"
               aria-roledescription="slide"
@@ -88,29 +88,38 @@ export default function Testimonials({ items }: TestimonialsProps) {
               aria-hidden={i !== index}
             >
               <div className={styles.side}>
-                <div className={styles.photo}>
-                  <Image
-                    src={item.image.src}
-                    alt={item.image.alt}
-                    width={item.image.width}
-                    height={item.image.height}
-                    quality={90}
-                    draggable={false}
-                  />
+                <div className={styles.photos}>
+                  {item.images.map((img) => (
+                    <div key={img.src} className={styles.photoItem}>
+                      <div className={`${styles.photo} ${item.name ? '' : styles.photoWhole}`}>
+                        <Image src={img.src} alt={img.alt} width={img.width} height={img.height} quality={90} draggable={false} />
+                      </div>
+                      {img.caption && <span className={styles.photoCaption}>{img.caption}</span>}
+                    </div>
+                  ))}
                 </div>
-                <figcaption className={styles.caption}>
-                  <strong>{item.name}</strong>
-                  <span>{item.role}</span>
-                  {item.note && <em>{item.note}</em>}
-                </figcaption>
+                {item.note && <figcaption className={styles.caption}>{item.note}</figcaption>}
               </div>
               <div className={styles.body}>
-                <Quote className={styles.mark} size={36} aria-hidden="true" />
-                <blockquote className={styles.quote}>
-                  {item.quotes.map((q) => (
-                    <p key={q}>“{q}”</p>
-                  ))}
-                </blockquote>
+                {item.quotes && <Quote className={styles.mark} size={36} aria-hidden="true" />}
+                {item.name && (
+                  <p className={styles.speaker}>
+                    <strong>{item.name}</strong>
+                    {item.role && <span>{item.role}</span>}
+                  </p>
+                )}
+                {item.quotes && (
+                  <blockquote className={styles.quote}>
+                    {item.quotes.map((q) => (
+                      <p key={q}>“{q}”</p>
+                    ))}
+                  </blockquote>
+                )}
+                {item.statements?.map((st) => (
+                  <p key={st} className={styles.statement}>
+                    {st}
+                  </p>
+                ))}
               </div>
             </figure>
           ))}
@@ -123,7 +132,7 @@ export default function Testimonials({ items }: TestimonialsProps) {
             key={`dot-${i}`}
             type="button"
             className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
-            aria-label={`Show slide ${i + 1}: ${item.name}`}
+            aria-label={`Show slide ${i + 1}${item.name ? `: ${item.name}` : ''}`}
             aria-current={i === index}
             onClick={() => go(i)}
           >

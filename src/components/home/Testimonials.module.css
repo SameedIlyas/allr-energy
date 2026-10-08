@@ -34,6 +34,19 @@
   align-content: start;
 }
 
+.photos {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.photoItem {
+  flex: 1 1 0;
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
 .photo {
   position: relative;
   aspect-ratio: 4 / 3;
@@ -46,6 +59,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* The site-selection photos are small scans of varied shape; show them whole rather than cropped or enlarged. */
+.photoWhole {
+  aspect-ratio: auto;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.photoWhole img {
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+}
+
+.photoCaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
 }
 
 .mark {
@@ -69,22 +101,34 @@
 }
 
 .caption {
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.speaker {
   display: grid;
   gap: 0.2rem;
-  font-size: 0.88rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
   line-height: 1.45;
   color: var(--muted);
 }
 
-.caption strong {
+.speaker strong {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--ink);
 }
 
-.caption em {
-  margin-top: 0.35rem;
-  color: var(--ink-soft);
+.statement {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 .dots {

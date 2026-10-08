@@ -10,9 +10,17 @@ export const metadata: Metadata = {
 const EEE_URL =
   'https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis';
 
-// Entries as listed on www.allr-energy.com/expertise.php (exact duplicates merged), plus the AI & software
-// engineering and NUST degrees added with Devotrex.
+// Devotrex's services section; its four delivery pillars are an accordion with no per-pillar anchor.
+const DEVOTREX_URL = 'https://devotrex.com/#services';
+
+// The AI & software engineering entries added with Devotrex lead the list, each linking to Devotrex.
+// The rest are as listed on www.allr-energy.com/expertise.php (exact duplicates merged), plus the NUST degrees.
 const ITEMS: readonly { label: string; href?: string }[] = [
+  { label: 'C-level AI & Software Engineering', href: DEVOTREX_URL },
+  { label: 'Ops-level AI & Automation Implementation: RAG Knowledge Agents, Workflow Automation, Document Extraction & OCR, Computer Vision', href: DEVOTREX_URL },
+  { label: 'Ops-level Full-Stack Web & SaaS Engineering: SaaS MVPs, Feature Development, API Development & Integration, Codebase Audits, QA & Test Automation', href: DEVOTREX_URL },
+  { label: 'Ops-level Enterprise Systems & Legacy Integration: Legacy Database / CMS Integration, Data Migration & ETL', href: DEVOTREX_URL },
+  { label: 'Ops-level Vertical Platform Builds: Legal Case Management, Real Estate Listings (IDX), LIMS / Compliance Tooling', href: DEVOTREX_URL },
   { label: 'C-level Investment Grade Renewable Energy Projects Permitting => EPC, Small Lot & Serial Manufacturing, Mass Production' },
   { label: 'C-level International Business Establishment, Market Entry Planning and Execution, Recruiting, ROE, NPV, Investment, Finance' },
   { label: 'C-level Manufacturing Plant EPC, Incentives Optimization, Development Contract Structuring' },
@@ -23,11 +31,6 @@ const ITEMS: readonly { label: string; href?: string }[] = [
   { label: 'Ops-level Industrial Engineering' },
   { label: 'Ops-level Defense Planning' },
   { label: 'Ops-level Publication' },
-  { label: 'C-level AI & Software Engineering' },
-  { label: 'Ops-level AI & Automation Implementation: RAG Knowledge Agents, Workflow Automation, Document Extraction & OCR, Computer Vision' },
-  { label: 'Ops-level Full-Stack Web & SaaS Engineering: SaaS MVPs, Feature Development, API Development & Integration, Codebase Audits, QA & Test Automation' },
-  { label: 'Ops-level Enterprise Systems & Legacy Integration: Legacy Database / CMS Integration, Data Migration & ETL' },
-  { label: 'Ops-level Vertical Platform Builds: Legal Case Management, Real Estate Listings (IDX), LIMS / Compliance Tooling' },
   { label: 'MSc. Management of Technology/Sloan Fellow, MIT' },
   { label: 'MSc. Mechanical Engineering & Business Administration (Dipl. Wirt.-Ing.), University of Paderborn, Germany' },
   { label: 'MBA, UMass Lowell' },

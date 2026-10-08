@@ -13,6 +13,8 @@ export interface Service {
   note?: string;
   /** Shown under the title, as on allr-energy.com/services.php. */
   image?: ServiceImage;
+  /** Two photos shown side by side at a shared height, each in its own proportions. */
+  imagePair?: readonly [ServiceImage, ServiceImage];
   /** Shown in its own column beside the text, with a caption (energy efficiency only). */
   asideImage?: ServiceImage & { caption: string };
 }
@@ -80,7 +82,11 @@ export const SERVICES: readonly Service[] = [
     title: 'Development Contract',
     bullets: [],
     note: 'The Company’s investment and operational strategy is aligned with bankable, multimodal, high-value incentives extended by multiple local and federal institutions.',
-    image: { src: '/assets/services/4.jpg', alt: 'Delegation and negotiation meeting', width: 403, height: 341 },
+    // 4.jpg is a horizontally squeezed composite; these are its two halves restored to natural proportions.
+    imagePair: [
+      { src: '/assets/services/4-hangar.jpg', alt: 'Delegation in front of a business jet in a hangar', width: 454, height: 682 },
+      { src: '/assets/services/4-meeting.jpg', alt: 'Negotiation meeting in a conference room', width: 530, height: 682 },
+    ],
   },
   {
     id: 'transportation',

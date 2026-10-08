@@ -5,16 +5,25 @@ export interface QuoteImage {
   height: number;
 }
 
-export interface Testimonial {
-  name: string;
-  role: string;
-  quotes: readonly string[];
-  /** Context of the photo / meeting, shown under the quote. */
-  note?: string;
-  image: QuoteImage;
+export interface SlideImage extends QuoteImage {
+  /** Short label shown under the photo. */
+  caption?: string;
 }
 
-// Quotes and photos as published on the original site.
+export interface Testimonial {
+  /** Speaker, shown above the quote. Statement-only slides have none. */
+  name?: string;
+  role?: string;
+  /** Quoted passages; rendered in quotation marks. */
+  quotes?: readonly string[];
+  /** ALLR's own statements, rendered without quotation marks. */
+  statements?: readonly string[];
+  /** Context of the photo / meeting, shown under the photo. */
+  note?: string;
+  images: readonly SlideImage[];
+}
+
+// Slides as published in the carousel on allr-energy.com, including the two closing site-selection slides.
 export const TESTIMONIALS: readonly Testimonial[] = [
   {
     name: 'Jennifer Granholm',
@@ -23,7 +32,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
       '…using a 21st-century industrial strategy to bring manufacturing back to America after years of offshoring…',
       '…In a closed-down factory in Hamtramck, Michigan, we’re building electric vehicles. In a formerly shuttered plant in Lordstown, Ohio, we’re building EV batteries…',
     ],
-    image: { src: '/assets/img55.jpg', alt: 'Meeting with Jennifer Granholm', width: 207, height: 140 },
+    images: [{ src: '/assets/img55.jpg', alt: 'Meeting with Jennifer Granholm', width: 207, height: 140 }],
   },
   {
     name: 'Jennifer Granholm',
@@ -32,8 +41,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
       '…So, as we fully deploy our tax credits and the grants and the loans to boost domestic production of these technologies, we’re also working hand-in-hand with our colleagues at the U.S. Trade Representative’s office, and Treasury, and Commerce, and State, of course, the White House…',
       '…If you’re using taxpayer money to develop a technology, you’ll be expected to manufacture it right here in America…',
     ],
-    note: 'While and after discussing green- & brownfield options with then Governor of Michigan, Jennifer Granholm.',
-    image: { src: '/assets/img53.jpg', alt: 'Jennifer Granholm', width: 130, height: 120 },
+    note: '(Here, while and after discussing a green- & brownfield options with then Governor of Michigan, Jennifer Granholm)',
+    images: [{ src: '/assets/img53.jpg', alt: 'Jennifer Granholm', width: 130, height: 120 }],
   },
   {
     name: 'Haley Barbour',
@@ -41,8 +50,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     quotes: [
       '…No one achieves greatness alone. It is through collaboration and teamwork that we accomplish extraordinary things…',
     ],
-    note: 'After structuring manufacturing scenarios with then Governor Barbour.',
-    image: { src: '/assets/img51.jpg', alt: 'Meeting with Haley Barbour', width: 181, height: 135 },
+    note: '(Here, we are after structuring manufacturing scenarios with then Governor Barbour)',
+    images: [{ src: '/assets/img51.jpg', alt: 'Meeting with Haley Barbour', width: 181, height: 135 }],
   },
   {
     name: 'Barack Obama',
@@ -50,7 +59,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     quotes: [
       '…Global investors have taken notice and are accelerating their investment in the United States, already home to more foreign direct investment than any other country in the world…',
     ],
-    image: { src: '/assets/img43.jpg', alt: 'Barack Obama', width: 181, height: 146 },
+    images: [{ src: '/assets/img43.jpg', alt: 'Barack Obama', width: 181, height: 146 }],
   },
   {
     name: 'Governor Strickland',
@@ -58,7 +67,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     quotes: [
       '…Energy is at the core of Ohio’s economic and environmental health: energy built our past, energy sustains our present, and energy holds the promise of an even brighter future…',
     ],
-    image: { src: '/assets/img45.jpg', alt: 'Governor Strickland', width: 181, height: 135 },
+    images: [{ src: '/assets/img45.jpg', alt: 'Governor Strickland', width: 181, height: 135 }],
   },
   {
     name: 'Rudolf Albert Scharping',
@@ -66,23 +75,23 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     quotes: [
       'Those who invest in new jobs should be better off than those who put their money in a bank for speculative purposes.',
     ],
-    note: 'With Minister Scharping at an MIT event.',
-    image: { src: '/assets/b-husenberg.jpg', alt: 'MIT event with Rudolf Scharping', width: 1024, height: 524 },
+    note: '(With minister Scharping at an MIT event.)',
+    images: [{ src: '/assets/b-husenberg.jpg', alt: 'MIT event with Rudolf Scharping', width: 1024, height: 524 }],
   },
-];
-
-export const LOCATION_STATEMENTS = [
-  'The optimal region for you to select as manufacturing site will decisively support your investment financing and other business needs.',
-  'Your optimal location for producing products and doing business requires a multi-factorial decision process that we are very well positioned to support you in. We will make a highly profitable difference for you!',
-] as const;
-
-export interface CaptionedImage extends QuoteImage {
-  caption: string;
-}
-
-// The hall photo uses the larger copy from the services page; the other two only exist at thumbnail size.
-export const LOCATION_IMAGES: readonly CaptionedImage[] = [
-  { src: '/assets/img47.jpg', alt: 'Incentive package breakdown', caption: 'Incentive package', width: 155, height: 233 },
-  { src: '/assets/services/6.jpg', alt: 'Empty production hall', caption: 'Production hall', width: 457, height: 387 },
-  { src: '/assets/img54.jpg', alt: 'Aerial view of a 57 acre riverside site', caption: '57 acre riverside site', width: 155, height: 98 },
+  {
+    statements: [
+      'The optimal region for you to select as manufacturing site will decisively support your investment financing and other business needs.',
+    ],
+    images: [{ src: '/assets/img47.jpg', alt: 'Incentive package breakdown', caption: 'Incentive package', width: 155, height: 233 }],
+  },
+  {
+    statements: [
+      'Your optimal location for producing products and doing business requires a multi-factorial decision process that we are very well positioned to support you in. We will make a highly profitable difference for you!',
+    ],
+    // The hall photo uses the larger copy from the services page; the riverside site only exists at thumbnail size.
+    images: [
+      { src: '/assets/services/6.jpg', alt: 'Empty production hall', caption: 'Production hall', width: 457, height: 387 },
+      { src: '/assets/img54.jpg', alt: 'Aerial view of a 57 acre riverside site', caption: '57 acre riverside site', width: 155, height: 98 },
+    ],
+  },
 ];

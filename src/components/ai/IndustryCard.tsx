@@ -18,7 +18,7 @@ export default function IndustryCard({ industry }: { industry: AiIndustry }) {
           {industry.title}
         </h3>
       </div>
-      <p className={styles.tagline}>{industry.tagline}</p>
+      {industry.tagline && <p className={styles.tagline}>{industry.tagline}</p>}
       <ul className={`check-list ${styles.list}`}>
         {industry.services.map((s) => (
           <li key={s}>{s}</li>

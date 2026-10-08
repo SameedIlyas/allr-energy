@@ -73,6 +73,8 @@
 }
 
 .list {
+  /* Pinned to the last row so cards without a tagline still line up with those that have one. */
+  grid-row: 3;
   align-content: start;
   gap: 0.5rem;
   padding-top: 1rem;

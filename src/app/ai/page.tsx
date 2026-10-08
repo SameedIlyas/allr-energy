@@ -17,7 +17,7 @@ export default function AiPage() {
     <>
       <PageHero
         title="AllR-AI"
-        lead="Your all-in-one milieu to grow and upscale your business in today’s fast, hi-tech driven environment."
+        lead="Your comprehensive partner to grow and upscale your business in today’s fast, hi-tech driven environment."
       />
 
       <main>
@@ -25,13 +25,13 @@ export default function AiPage() {
           <div className="container">
             <div className={styles.head}>
               <p className={styles.intro}>
-                We build smart and intelligent solutions for your business to grow through faster automated workflow and
-                achieve more…
+                We build intelligent AI solutions efficiently for your business to grow sustainably, to increase
+                productivity and to reduce cost.
               </p>
-              <h2 className="section-title">Standardized and customized AI services</h2>
+              <h2 className="section-title">Standardized and Customized AI Services</h2>
               <p className="lead">
-                Our specialized offerings combine tailor-made and standardized tools designed to cater to your unique
-                needs and customized industry requirements.
+                Our specialized offerings combine both tailor-made as well as standardized tools catering to your specific
+                requirements.
               </p>
             </div>
 

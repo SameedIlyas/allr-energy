@@ -3,64 +3,63 @@ export type IndustryId = 'construction' | 'manufacturing' | 'engineering' | 'log
 export interface AiIndustry {
   id: IndustryId;
   title: string;
-  tagline: string;
+  /** Optional one-liner under the title. */
+  tagline?: string;
   /** Card photo; 4:5-ish crop works best. */
   image: { src: string; alt: string };
   services: readonly string[];
 }
 
+// Construction, logistics, manufacturing and engineering services per "ALLR-AI webpage conceptualization rev 1".
 export const AI_INDUSTRIES: readonly AiIndustry[] = [
   {
     id: 'construction',
     title: 'Construction',
-    tagline: 'From drawing set to bid, without the manual takeoff.',
     image: { src: '/assets/ai/construction.jpg', alt: 'Construction site with cranes at sunset' },
     services: [
-      'AI quantity takeoff from drawings',
-      'Estimating built on your cost data',
-      'Spec and addendum intelligence',
-      'RFI and submittal automation',
-      'Site photo to progress reporting',
-      'Permit package automation',
+      'Generative Design & BIM Optimization',
+      'Delivery Notes Reconciliation',
+      'Autonomous Machinery & Drones',
+      'AI-Powered Drone Progress Reporting',
+      'Risk & Safety Monitoring',
+      'Project & Supply Chain Scheduling',
+    ],
+  },
+  {
+    id: 'logistics',
+    title: 'Logistics',
+    image: { src: '/assets/ai/logistics.jpg', alt: 'Container ship and port cranes at sunset' },
+    services: [
+      'Dynamic Route Optimization',
+      'Last-Mile ETA Prediction',
+      'Predictive Inventory Management',
+      'Autonomous Warehouse Robotics',
+      'Carton & Pallet Packing Optimization',
     ],
   },
   {
     id: 'manufacturing',
     title: 'Manufacturing',
-    tagline: 'Quote-to-order automation for custom and engineer-to-order manufacturers.',
     image: { src: '/assets/ai/manufacturing.jpg', alt: 'Robotic arms on a factory production line' },
     services: [
-      'CPQ readiness assessment',
-      'Quote generation from RFQs and specs',
-      'BOM and routing automation',
-      'Vision-based quality control',
-      'ERP integration (SAP, NetSuite, Epicor, Infor)',
+      'Predictive Maintenance',
+      'Tool Lifespan Forecasting',
+      'Visual Quality Control',
+      'Collaborative Robots (Cobots)',
+      'Digital Twins & Factory Control',
+      'Setup Time Optimization',
     ],
   },
   {
     id: 'engineering',
     title: 'Engineering',
-    tagline: 'Your engineering rules, captured and automated.',
     image: { src: '/assets/ai/engineering.jpg', alt: 'Industrial plant with an engineer’s hard hat' },
     services: [
-      'Automated 2D drawing generation',
-      'CAD automation from product configurations',
-      'Design rule and configuration logic capture',
-      'Drawing data extraction and cataloging',
-      'Engineering document intelligence',
-    ],
-  },
-  {
-    id: 'logistics',
-    title: 'Logistics & Supply Chain',
-    tagline: 'The back office of freight, automated end to end.',
-    image: { src: '/assets/ai/logistics.jpg', alt: 'Container ship and port cranes at sunset' },
-    services: [
-      'Trade document extraction (BOL, invoices, customs)',
-      'Freight payment audit and recovery',
-      'Automated spot quoting from your rate data',
-      'Carrier and vendor onboarding',
-      'Ops inbox and exception handling',
+      'Structural Load Simulation',
+      'Material Science Discoveries',
+      'Auto Code & Schematic Generation',
+      'CAD Component Cataloging',
+      'Compliance Audits',
     ],
   },
   {

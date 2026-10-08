@@ -46,6 +46,23 @@ function ServiceBlock({ service }: { service: Service }) {
         />
       )}
 
+      {service.imagePair && (
+        <div className={styles.pair}>
+          {service.imagePair.map((img) => (
+            <Image
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              quality={90}
+              sizes="(max-width: 900px) 50vw, 260px"
+              style={{ flexGrow: img.width / img.height }}
+            />
+          ))}
+        </div>
+      )}
+
       {service.id === 'incentives' && <IncentiveSteps />}
 
       {service.listTitle && <h3 className={styles.listTitle}>{service.listTitle}</h3>}

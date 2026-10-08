@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import HomeHero from '@/components/home/HomeHero';
 import Testimonials from '@/components/home/Testimonials';
-import { LOCATION_IMAGES, LOCATION_STATEMENTS, TESTIMONIALS } from '@/content/quotes';
+import { TESTIMONIALS } from '@/content/quotes';
 import styles from './home.module.css';
 
 export default function HomePage() {
@@ -11,7 +11,7 @@ export default function HomePage() {
 
       <main>
         {/* Welcome text, verbatim from allr-energy.com */}
-        <section id="about" className={`section ${styles.about}`}>
+        <section id="about" className={`section ${styles.tight} ${styles.about}`}>
           <div className={`container ${styles.aboutGrid}`}>
             <Image
               src="/assets/handshake-wide.jpg"
@@ -51,34 +51,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="section section-soft">
+        {/* Testimonials, then the closing site-selection slides, as on allr-energy.com */}
+        <section className={`section section-soft ${styles.tight}`}>
           <div className="container">
             <Testimonials items={TESTIMONIALS} />
           </div>
         </section>
-
-        {/* Location */}
-        <section className="section">
-          <div className="container">
-            <div className={styles.locationText}>
-              {LOCATION_STATEMENTS.map((s) => (
-                <p key={s} className={styles.body}>
-                  {s}
-                </p>
-              ))}
-            </div>
-            <div className={styles.locationImages}>
-              {LOCATION_IMAGES.map((img) => (
-                <figure key={img.src}>
-                  <Image src={img.src} alt={img.alt} width={img.width} height={img.height} quality={95} />
-                  <figcaption>{img.caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-
       </main>
     </>
   );
