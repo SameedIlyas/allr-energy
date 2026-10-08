@@ -87,15 +87,22 @@ export default function Testimonials({ items }: TestimonialsProps) {
               aria-label={`${i + 1} of ${count}`}
               aria-hidden={i !== index}
             >
-              <div className={styles.photo}>
-                <Image
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  width={item.image.width}
-                  height={item.image.height}
-                  quality={90}
-                  draggable={false}
-                />
+              <div className={styles.side}>
+                <div className={styles.photo}>
+                  <Image
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    width={item.image.width}
+                    height={item.image.height}
+                    quality={90}
+                    draggable={false}
+                  />
+                </div>
+                <figcaption className={styles.caption}>
+                  <strong>{item.name}</strong>
+                  <span>{item.role}</span>
+                  {item.note && <em>{item.note}</em>}
+                </figcaption>
               </div>
               <div className={styles.body}>
                 <Quote className={styles.mark} size={36} aria-hidden="true" />
@@ -104,11 +111,6 @@ export default function Testimonials({ items }: TestimonialsProps) {
                     <p key={q}>“{q}”</p>
                   ))}
                 </blockquote>
-                <figcaption className={styles.caption}>
-                  <strong>{item.name}</strong>
-                  <span>{item.role}</span>
-                  {item.note && <em>{item.note}</em>}
-                </figcaption>
               </div>
             </figure>
           ))}

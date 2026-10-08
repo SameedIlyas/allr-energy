@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import IndustryCard from '@/components/ai/IndustryCard';
+import Pillars from '@/components/ai/Pillars';
 import ProjectBrief from '@/components/ai/ProjectBrief';
 import PageHero from '@/components/PageHero';
 import { AI_INDUSTRIES } from '@/content/ai-industries';
@@ -41,6 +42,7 @@ export default function AiPage() {
             </div>
           </div>
         </section>
+        <Pillars />
         <ProjectBrief />
       </main>
     </>

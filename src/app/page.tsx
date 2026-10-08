@@ -13,6 +13,15 @@ export default function HomePage() {
         {/* Welcome text, verbatim from allr-energy.com */}
         <section id="about" className={`section ${styles.about}`}>
           <div className={`container ${styles.aboutGrid}`}>
+            <Image
+              src="/assets/handshake-wide.jpg"
+              alt="Business partners shaking hands"
+              width={2274}
+              height={835}
+              sizes="(max-width: 1240px) 100vw, 1200px"
+              className={styles.aboutImg}
+            />
+
             <div>
               <p className={styles.welcome}>
                 Welcome to ALLR ENERGY, your reliable partner in expanding your business globally in today’s
@@ -39,14 +48,6 @@ export default function HomePage() {
               </p>
             </div>
 
-            <Image
-              src="/assets/handshake.jpg"
-              alt="Business partners shaking hands"
-              width={2454}
-              height={1025}
-              sizes="(max-width: 900px) 100vw, 520px"
-              className={styles.aboutImg}
-            />
           </div>
         </section>
 

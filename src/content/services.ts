@@ -1,14 +1,27 @@
+export interface ServiceImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface Service {
   id: string;
   title: string;
   listTitle?: string;
   bullets: readonly string[];
   note?: string;
-  image?: { src: string; alt: string; width: number; height: number };
+  /** Shown under the title, as on allr-energy.com/services.php. */
+  image?: ServiceImage;
+  /** Shown in its own column beside the text, with a caption (energy efficiency only). */
+  asideImage?: ServiceImage & { caption: string };
 }
 
 export const SERVICES_INTRO =
   'Value: All undertakings specifically catered to foreign business expansion such as, but not limited to';
+
+/** The arrow graphic that sits beside the incentive steps. */
+export const INCENTIVE_ARROW: ServiceImage = { src: '/assets/services/2.jpg', alt: '', width: 93, height: 273 };
 
 export const INCENTIVE_STEPS = [
   'Define Business Needs',
@@ -104,7 +117,13 @@ export const SERVICES: readonly Service[] = [
       'Own or proximity to low cost renewable energy sources',
     ],
     note: 'Sustainably low energy consumption w/o business limitations.',
-    // Framed from the full-resolution campus render (logo-top.jpg) to match the other service photos.
-    image: { src: '/assets/services/7-framed.jpg', alt: '3D layout depicting energy efficient operations', width: 1210, height: 1024 },
+    // Framed from the full-resolution campus render (logo-top.jpg); the original 7.jpg is a 500px thumbnail.
+    asideImage: {
+      src: '/assets/services/7-framed.jpg',
+      alt: '3D layout depicting energy efficient operations',
+      width: 1210,
+      height: 1024,
+      caption: '3D Layout depicting energy efficient operations',
+    },
   },
 ];

@@ -140,10 +140,6 @@
 
 @media (max-width: 1023.98px) {
   .nav,
-  .cta {
-    display: none;
-  }
-
   .burger {
     display: inline-flex;
   }
@@ -184,13 +180,6 @@
     display: none;
   }
 
-  .mobileCta {
-    padding-top: 1.25rem;
-  }
-
-  .mobileCta :global(.btn) {
-    width: 100%;
-  }
 }
 
 @media (max-width: 420px) {

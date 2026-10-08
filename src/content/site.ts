@@ -28,4 +28,3 @@ export const CONTACT = {
   director: 'Benjamin Bhaumick, Managing Director',
 } as const;
 
-export const CTA_LABEL: Localized = { en: 'Get in touch', de: 'Kontakt aufnehmen' };

@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Fragment, useEffect, useState } from 'react';
-import { CTA_LABEL, NAV_ITEMS } from '@/content/site';
+import { NAV_ITEMS } from '@/content/site';
 import { useLanguage, type Lang } from '../LanguageProvider';
 import Logo from './Logo';
 import styles from './SiteHeader.module.css';
@@ -79,9 +79,6 @@ export default function SiteHeader() {
               </Fragment>
             ))}
           </div>
-          <Link href="/contact" className={`btn btn-primary btn-sm ${styles.cta}`}>
-            {CTA_LABEL[lang]} <ArrowRight size={16} aria-hidden="true" />
-          </Link>
           <button
             type="button"
             className={styles.burger}
@@ -108,11 +105,6 @@ export default function SiteHeader() {
               </Link>
             </li>
           ))}
-          <li className={styles.mobileCta}>
-            <Link href="/contact" className="btn btn-primary">
-              {CTA_LABEL[lang]} <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </li>
         </ul>
       </div>
     </header>

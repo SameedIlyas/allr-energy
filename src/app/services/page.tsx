@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import PageHero from '@/components/PageHero';
-import { INCENTIVE_STEPS, SERVICES, SERVICES_INTRO, type Service } from '@/content/services';
+import { INCENTIVE_ARROW, INCENTIVE_STEPS, SERVICES, SERVICES_INTRO, type Service } from '@/content/services';
 import styles from './services.module.css';
 
 export const metadata: Metadata = {
@@ -9,60 +9,93 @@ export const metadata: Metadata = {
   description: 'Consulting, incentives, site selection, development contracts, transportation analysis, industrial engineering and energy efficient operations.',
 };
 
-function ServiceBlock({ service }: { service: Service }) {
-  const hasImage = Boolean(service.image);
+function IncentiveSteps() {
   return (
-    <article id={service.id} className={`${styles.block} ${hasImage ? '' : styles.noImage}`}>
-      <div>
-        <h2 className={styles.title}>{service.title}</h2>
+    <div className={styles.steps}>
+      <Image
+        src={INCENTIVE_ARROW.src}
+        alt={INCENTIVE_ARROW.alt}
+        width={INCENTIVE_ARROW.width}
+        height={INCENTIVE_ARROW.height}
+        className={styles.arrow}
+      />
+      <ol>
+        {INCENTIVE_STEPS.map((step) => (
+          <li key={step}>{step}</li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 
-        {service.id === 'incentives' && (
-          <ol className={styles.steps}>
-            {INCENTIVE_STEPS.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
-        )}
-
-        {service.listTitle && <p className={styles.listTitle}>{service.listTitle}</p>}
-        {service.bullets.length > 0 && (
-          <ul className={styles.list}>
-            {service.bullets.map((b) => (
-              <li key={b}>{b}</li>
-            ))}
-            <li>Etc.</li>
-          </ul>
-        )}
-        {service.note && <p className={styles.note}>{service.note}</p>}
-      </div>
+// Layout mirrors allr-energy.com/services.php: two columns, each service is title → image → list → note.
+function ServiceBlock({ service }: { service: Service }) {
+  return (
+    <article id={service.id} className={styles.block}>
+      <h2 className={styles.title}>{service.title}</h2>
 
       {service.image && (
-        <figure className={styles.figure}>
-          <Image
-            src={service.image.src}
-            alt={service.image.alt}
-            width={service.image.width}
-            height={service.image.height}
-            quality={90}
-            sizes="(max-width: 900px) 100vw, 480px"
-          />
-          {service.id === 'energy-efficiency' && <figcaption>3D Layout depicting energy efficient operations</figcaption>}
-        </figure>
+        <Image
+          src={service.image.src}
+          alt={service.image.alt}
+          width={service.image.width}
+          height={service.image.height}
+          quality={90}
+          sizes="(max-width: 900px) 100vw, 403px"
+          className={styles.img}
+        />
       )}
+
+      {service.id === 'incentives' && <IncentiveSteps />}
+
+      {service.listTitle && <h3 className={styles.listTitle}>{service.listTitle}</h3>}
+      {service.bullets.length > 0 && (
+        <ul className={styles.list}>
+          {service.bullets.map((b) => (
+            <li key={b}>{b}</li>
+          ))}
+          <li>Etc.</li>
+        </ul>
+      )}
+      {service.note && <p className={styles.note}>{service.note}</p>}
     </article>
+  );
+}
+
+function AsideFigure({ image }: { image: NonNullable<Service['asideImage']> }) {
+  return (
+    <figure className={styles.figure}>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        quality={90}
+        sizes="(max-width: 900px) 100vw, 560px"
+      />
+      <figcaption>{image.caption}</figcaption>
+    </figure>
   );
 }
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHero title="Services" lead={`${SERVICES_INTRO}:`} />
+      <PageHero title="Services" />
 
       <main className="section">
         <div className="container">
-          {SERVICES.map((s) => (
-            <ServiceBlock key={s.id} service={s} />
-          ))}
+          <p className={styles.intro}>{SERVICES_INTRO}</p>
+
+          <div className={styles.grid}>
+            {SERVICES.map((s) =>
+              s.asideImage ? (
+                [<ServiceBlock key={s.id} service={s} />, <AsideFigure key={`${s.id}-figure`} image={s.asideImage} />]
+              ) : (
+                <ServiceBlock key={s.id} service={s} />
+              ),
+            )}
+          </div>
         </div>
       </main>
     </>
