@@ -51,4 +51,25 @@
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--sky-300);
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .logo {
+    gap: 0.6rem;
+  }
+
+  .mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+
+  .name {
+    font-size: 1rem;
+  }
+
+  .tagline {
+    letter-spacing: 0.16em;
+  }
 }

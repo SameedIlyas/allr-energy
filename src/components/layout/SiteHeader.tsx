@@ -16,6 +16,32 @@ function isActive(pathname: string, href: string): boolean {
   return href === '/' ? pathname === '/' : pathname.startsWith(href);
 }
 
+interface LangSwitchProps {
+  className: string;
+  lang: Lang;
+  setLang: (lang: Lang) => void;
+}
+
+function LangSwitch({ className, lang, setLang }: LangSwitchProps) {
+  return (
+    <div className={className} role="group" aria-label="Language">
+      {LANGS.map((code, i) => (
+        <Fragment key={code}>
+          {i > 0 && <span aria-hidden="true">|</span>}
+          <button
+            type="button"
+            className={lang === code ? styles.langActive : undefined}
+            aria-pressed={lang === code}
+            onClick={() => setLang(code)}
+          >
+            {code.toUpperCase()}
+          </button>
+        </Fragment>
+      ))}
+    </div>
+  );
+}
+
 export default function SiteHeader() {
   const pathname = usePathname();
   const { lang, setLang } = useLanguage();
@@ -64,21 +90,7 @@ export default function SiteHeader() {
         </nav>
 
         <div className={styles.actions}>
-          <div className={styles.lang} role="group" aria-label="Language">
-            {LANGS.map((code, i) => (
-              <Fragment key={code}>
-                {i > 0 && <span aria-hidden="true">|</span>}
-                <button
-                  type="button"
-                  className={lang === code ? styles.langActive : undefined}
-                  aria-pressed={lang === code}
-                  onClick={() => setLang(code)}
-                >
-                  {code.toUpperCase()}
-                </button>
-              </Fragment>
-            ))}
-          </div>
+          <LangSwitch className={styles.lang} lang={lang} setLang={setLang} />
           <button
             type="button"
             className={styles.burger}
@@ -105,6 +117,9 @@ export default function SiteHeader() {
               </Link>
             </li>
           ))}
+          <li className={styles.mobileLang}>
+            <LangSwitch className={styles.lang} lang={lang} setLang={setLang} />
+          </li>
         </ul>
       </div>
     </header>
