@@ -59,6 +59,18 @@
   animation: rise 0.9s 0.08s var(--ease) both;
 }
 
+.title:has(+ .lead) {
+  margin-bottom: 1rem;
+}
+
+.lead {
+  max-width: 60ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: rgba(230, 240, 250, 0.88);
+  margin: 0 0 2rem;
+  animation: rise 0.9s 0.16s var(--ease) both;
+}
+
 .content :global(.btn-group) {
   animation: rise 0.9s 0.24s var(--ease) both;
 }

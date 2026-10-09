@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import IndustryCard from '@/components/ai/IndustryCard';
 import Pillars from '@/components/ai/Pillars';
 import ProjectBrief from '@/components/ai/ProjectBrief';
-import PageHero from '@/components/PageHero';
+import SceneHero from '@/components/home/SceneHero';
 import { AI_INDUSTRIES } from '@/content/ai-industries';
 import styles from './ai.module.css';
 
@@ -15,9 +15,11 @@ export const metadata: Metadata = {
 export default function AiPage() {
   return (
     <>
-      <PageHero
+      <SceneHero
         title="AllR-AI"
         lead="Your comprehensive partner to grow and upscale your business in today’s fast, hi-tech driven environment."
+        scrollTarget="#industries"
+        scrollLabel="Scroll"
       />
 
       <main>

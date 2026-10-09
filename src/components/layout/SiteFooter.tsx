@@ -12,7 +12,7 @@ export default function SiteFooter() {
         <div className={styles.brand}>
           <Logo />
           <p>
-            Building profitable international businesses abroad to be sustainable &amp; energy efficient.
+            Building profitable international businesses abroad to be sustainable and efficient, technologically and energy wise.
           </p>
         </div>
 

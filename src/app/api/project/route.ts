@@ -1,5 +1,5 @@
 import { clientIp, deliver } from '@/lib/mailer';
-import { labelFor, PROJECT_AREAS, PROJECT_TIMELINES, projectSchema } from '@/lib/project-schema';
+import { labelFor, PROJECT_AREAS, projectSchema } from '@/lib/project-schema';
 import { createRateLimiter } from '@/lib/rate-limit';
 
 const isAllowed = createRateLimiter(5, 10 * 60 * 1000);
@@ -16,13 +16,12 @@ export async function POST(request: Request) {
     return Response.json({ success: false, error }, { status: 400 });
   }
 
-  const { name, company, email, area, timeline, description } = parsed.data;
+  const { name, company, email, area, description } = parsed.data;
   const text = [
     `Name: ${name}`,
     `Company: ${company || '(not given)'}`,
     `Email: ${email}`,
     `Industry: ${labelFor(PROJECT_AREAS, area)}`,
-    `Timeline: ${labelFor(PROJECT_TIMELINES, timeline)}`,
     '',
     description,
   ].join('\n');

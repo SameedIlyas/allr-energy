@@ -28,14 +28,6 @@ export default function Pillars() {
                   </li>
                 ))}
               </ul>
-              <ul className={styles.services}>
-                {pillar.services.map((s) => (
-                  <li key={s.name}>
-                    <span>{s.name}</span>
-                    <span className={styles.timeline}>{s.timeline}</span>
-                  </li>
-                ))}
-              </ul>
             </article>
           ))}
         </div>

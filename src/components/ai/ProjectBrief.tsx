@@ -7,7 +7,6 @@ import { FALLBACK_EMAIL } from '@/lib/mailer-constants';
 import {
   DESCRIPTION_MIN_LENGTH,
   PROJECT_AREAS,
-  PROJECT_TIMELINES,
   SHORT_FIELD_MAX_LENGTH,
 } from '@/lib/project-schema';
 import styles from './ProjectBrief.module.css';
@@ -16,7 +15,7 @@ type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind
 type FieldKey = keyof typeof EMPTY;
 type FieldElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-const EMPTY = { name: '', company: '', email: '', area: '', timeline: '', description: '' };
+const EMPTY = { name: '', company: '', email: '', area: '', description: '' };
 const GENERIC_ERROR = `Your project brief could not be sent. Please email us at ${FALLBACK_EMAIL}.`;
 
 function errorFrom(body: unknown): string {
@@ -126,36 +125,20 @@ export default function ProjectBrief() {
                 </label>
                 <label className={styles.field}>
                   <span>
-                    Timeline <abbr title="required">*</abbr>
+                    Industry <abbr title="required">*</abbr>
                   </span>
-                  <select name="timeline" required value={fields.timeline} onChange={update('timeline')}>
+                  <select name="area" required value={fields.area} onChange={update('area')}>
                     <option value="" disabled>
-                      Select a timeline…
+                      Select an industry…
                     </option>
-                    {PROJECT_TIMELINES.map((t) => (
-                      <option key={t.value} value={t.value}>
-                        {t.label}
+                    {PROJECT_AREAS.map((a) => (
+                      <option key={a.value} value={a.value}>
+                        {a.label}
                       </option>
                     ))}
                   </select>
                 </label>
               </div>
-
-              <label className={styles.field}>
-                <span>
-                  Industry <abbr title="required">*</abbr>
-                </span>
-                <select name="area" required value={fields.area} onChange={update('area')}>
-                  <option value="" disabled>
-                    Select an industry…
-                  </option>
-                  {PROJECT_AREAS.map((a) => (
-                    <option key={a.value} value={a.value}>
-                      {a.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
 
               <label className={styles.field}>
                 <span>
