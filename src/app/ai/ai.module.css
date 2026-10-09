@@ -23,9 +23,9 @@
 }
 
 .card {
-  /* Subgrid keeps the header, tagline and list rows aligned across every card in a row. */
+  /* Subgrid keeps the title, photo, tagline and list rows aligned across every card in a row. */
   display: grid;
-  grid-row: span 3;
+  grid-row: span 4;
   grid-template-rows: subgrid;
   row-gap: 1rem;
   padding: 1.25rem;
@@ -44,16 +44,10 @@
   border-color: var(--blue-500);
 }
 
-.cardHead {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
+/* Source photos are ~120px, so 200px is the largest they go before visibly softening. */
 .cardImg {
-  flex: none;
-  width: 72px;
-  height: 72px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: var(--radius-sm);
 }
@@ -74,12 +68,34 @@
 
 .list {
   /* Pinned to the last row so cards without a tagline still line up with those that have one. */
-  grid-row: 3;
+  grid-row: 4;
   align-content: start;
-  gap: 0.5rem;
-  padding-top: 1rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  list-style: none;
   border-top: 1px solid var(--line);
   font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+/* Arrow bullets, as on the Services page. */
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0;
+  height: 0;
+  border-top: 0.32em solid transparent;
+  border-bottom: 0.32em solid transparent;
+  border-left: 0.6em solid var(--navy-800);
 }
 
 @media (max-width: 1099.98px) {

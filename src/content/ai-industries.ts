@@ -11,20 +11,8 @@ export interface AiIndustry {
 }
 
 // Construction, logistics, manufacturing and engineering services per "ALLR-AI webpage conceptualization rev 1".
+// Display order is set by the client: logistics, engineering, manufacturing, construction, real estate, legal.
 export const AI_INDUSTRIES: readonly AiIndustry[] = [
-  {
-    id: 'construction',
-    title: 'Construction',
-    image: { src: '/assets/ai/construction.jpg', alt: 'Construction site with cranes at sunset' },
-    services: [
-      'Generative Design & BIM Optimization',
-      'Delivery Notes Reconciliation',
-      'Autonomous Machinery & Drones',
-      'AI-Powered Drone Progress Reporting',
-      'Risk & Safety Monitoring',
-      'Project & Supply Chain Scheduling',
-    ],
-  },
   {
     id: 'logistics',
     title: 'Logistics',
@@ -35,6 +23,18 @@ export const AI_INDUSTRIES: readonly AiIndustry[] = [
       'Predictive Inventory Management',
       'Autonomous Warehouse Robotics',
       'Carton & Pallet Packing Optimization',
+    ],
+  },
+  {
+    id: 'engineering',
+    title: 'Engineering',
+    image: { src: '/assets/ai/engineering.jpg', alt: 'Industrial plant with an engineer’s hard hat' },
+    services: [
+      'Structural Load Simulation',
+      'Material Science Discoveries',
+      'Auto Code & Schematic Generation',
+      'CAD Component Cataloging',
+      'Compliance Audits',
     ],
   },
   {
@@ -51,28 +51,16 @@ export const AI_INDUSTRIES: readonly AiIndustry[] = [
     ],
   },
   {
-    id: 'engineering',
-    title: 'Engineering',
-    image: { src: '/assets/ai/engineering.jpg', alt: 'Industrial plant with an engineer’s hard hat' },
+    id: 'construction',
+    title: 'Construction',
+    image: { src: '/assets/ai/construction.jpg', alt: 'Construction site with cranes at sunset' },
     services: [
-      'Structural Load Simulation',
-      'Material Science Discoveries',
-      'Auto Code & Schematic Generation',
-      'CAD Component Cataloging',
-      'Compliance Audits',
-    ],
-  },
-  {
-    id: 'legal',
-    title: 'Legal',
-    tagline: 'Platforms and pipelines for high-volume practices.',
-    image: { src: '/assets/ai/legal.jpg', alt: 'Hand shielding blocks with a protection emblem' },
-    services: [
-      'Client intake and document extraction',
-      'Court form and filing preparation',
-      'Custom case management platforms',
-      'Practice system integration (Aderant, Elite, Clio)',
-      'Deadline and notice monitoring',
+      'Generative Design & BIM Optimization',
+      'Delivery Notes Reconciliation',
+      'Autonomous Machinery & Drones',
+      'AI-Powered Drone Progress Reporting',
+      'Risk & Safety Monitoring',
+      'Project & Supply Chain Scheduling',
     ],
   },
   {
@@ -87,6 +75,19 @@ export const AI_INDUSTRIES: readonly AiIndustry[] = [
       'Property management ops automation (invoices, COIs, work orders)',
       'Listing content and media automation',
       'CRM and PMS integration (Yardi, AppFolio, Buildium)',
+    ],
+  },
+  {
+    id: 'legal',
+    title: 'Legal',
+    tagline: 'Platforms and pipelines for high-volume practices.',
+    image: { src: '/assets/ai/legal.jpg', alt: 'Hand shielding blocks with a protection emblem' },
+    services: [
+      'Client intake and document extraction',
+      'Court form and filing preparation',
+      'Custom case management platforms',
+      'Practice system integration (Aderant, Elite, Clio)',
+      'Deadline and notice monitoring',
     ],
   },
 ];
