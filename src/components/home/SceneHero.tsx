@@ -15,10 +15,12 @@ interface SceneHeroProps {
   actions?: ReactNode;
   scrollTarget: string;
   scrollLabel: string;
+  /** Shows the title as a brand label and gives the lead the full headline treatment. */
+  brandTitle?: boolean;
 }
 
-/** Full-height hero with the 3D campus scene, shared by the home and AllR-AI pages. */
-export default function SceneHero({ title, lead, actions, scrollTarget, scrollLabel }: SceneHeroProps) {
+/** Full-height hero with the 3D campus scene, shared by the home and ALLR-AI pages. */
+export default function SceneHero({ title, lead, actions, scrollTarget, scrollLabel, brandTitle = false }: SceneHeroProps) {
   const [sceneReady, setSceneReady] = useState(false);
   const onReady = useCallback(() => setSceneReady(true), []);
 
@@ -41,8 +43,8 @@ export default function SceneHero({ title, lead, actions, scrollTarget, scrollLa
       <div className={styles.shade} aria-hidden="true" />
 
       <div className={`container ${styles.content}`}>
-        <h1 className={styles.title}>{title}</h1>
-        {lead && <p className={styles.lead}>{lead}</p>}
+        <h1 className={brandTitle ? styles.brand : styles.title}>{title}</h1>
+        {lead && <p className={brandTitle ? styles.title : styles.lead}>{lead}</p>}
         {actions && <div className="btn-group">{actions}</div>}
       </div>
 

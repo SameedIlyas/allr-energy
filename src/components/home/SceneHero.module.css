@@ -59,6 +59,20 @@
   animation: rise 0.9s 0.08s var(--ease) both;
 }
 
+/* Brand-name title (ALLR-AI page): larger, accented and underlined so it reads apart from the headline below. */
+.brand {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 4px solid var(--blue-400);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--sky-300);
+  animation: rise 0.9s 0.02s var(--ease) both;
+}
+
 .title:has(+ .lead) {
   margin-bottom: 1rem;
 }

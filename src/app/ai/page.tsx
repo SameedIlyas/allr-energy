@@ -7,19 +7,20 @@ import { AI_INDUSTRIES } from '@/content/ai-industries';
 import styles from './ai.module.css';
 
 export const metadata: Metadata = {
-  title: 'AllR-AI',
+  title: 'ALLR-AI',
   description:
-    'AllR-AI: standardized and customized AI services for construction, manufacturing, engineering, logistics & supply chain and legal.',
+    'ALLR-AI: standardized and customized AI services for construction, manufacturing, engineering, logistics & supply chain and legal.',
 };
 
 export default function AiPage() {
   return (
     <>
       <SceneHero
-        title="AllR-AI"
+        title="ALLR-AI"
         lead="Your comprehensive partner to grow and upscale your business in today’s fast, hi-tech driven environment."
         scrollTarget="#industries"
         scrollLabel="Scroll"
+        brandTitle
       />
 
       <main>
