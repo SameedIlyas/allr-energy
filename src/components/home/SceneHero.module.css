@@ -54,6 +54,9 @@
   font-size: clamp(2rem, 4.2vw, 3.4rem);
   line-height: 1.12;
   letter-spacing: -0.015em;
+  /* Set explicitly: on the ALLR-AI page this style is applied to a <p>, not the <h1>. */
+  font-family: var(--font-display);
+  font-weight: 600;
   color: #fff;
   margin-bottom: 2rem;
   animation: rise 0.9s 0.08s var(--ease) both;
