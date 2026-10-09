@@ -11,18 +11,19 @@ export default function IndustryCard({ industry }: { industry: AiIndustry }) {
       <Image
         src={industry.image.src}
         alt={industry.image.alt}
-        width={200}
-        height={200}
+        width={400}
+        height={300}
         quality={95}
+        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 400px"
         className={styles.cardImg}
       />
       {industry.tagline && <p className={styles.tagline}>{industry.tagline}</p>}
-      {/* Arrow bullets and the trailing "Add more…" match the Services page. */}
+      {/* Arrow bullets and the trailing "And more…" match the Services page. */}
       <ul className={styles.list}>
         {industry.services.map((s) => (
           <li key={s}>{s}</li>
         ))}
-        <li>Add more…</li>
+        <li>And more…</li>
       </ul>
     </article>
   );

@@ -44,10 +44,11 @@
   border-color: var(--blue-500);
 }
 
-/* Source photos are ~120px, so 200px is the largest they go before visibly softening. */
+/* Fills the card width; source photos are ~120px, so higher-res originals will sharpen these. */
 .cardImg {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: var(--radius-sm);
 }
