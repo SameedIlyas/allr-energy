@@ -11,7 +11,7 @@ const sans = Source_Sans_3({ subsets: ['latin'], variable: '--font-sans', displa
 
 export const metadata: Metadata = {
   title: {
-    default: 'ALLR ENERGY | Profitable & Sustainable International Expansion',
+    default: 'ALLR ENERGY | Profitable & Sustainable International Business Expansion & AI Services',
     template: '%s | ALLR ENERGY',
   },
   description:
